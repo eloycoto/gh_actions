@@ -21,6 +21,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: "Git config"
+        run: |
+          git config user.name 'Parodos bot'
+          git config user.email 'parodos@redhat.com'
+
       - name: Configure Maven settings
         run: |
           mkdir -p ~/.m2/
@@ -37,11 +42,8 @@ jobs:
         run: |
           make release-all
 
-
       - name: "Commit the new changes"
         run: |
-          git config user.name 'Parodos bot'
-          git config user.email 'parodos@redhat.com'
           export KEY=$(date +%y%m%d)
           git add .
           git commit -m "NON-issue: bump version on $KEY"
