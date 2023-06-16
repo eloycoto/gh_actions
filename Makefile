@@ -137,6 +137,7 @@ fast-build-coverage: coverage
 .PHONY: build-images tag-images push-images push-images-to-kind install-nginx install-kubernetes-dependencies wait-kubernetes-dependencies
 
 build-images: ## Build docker images
+	ls notification-service/target  || echo "failed"
 	$(DOCKER-COMPOSE) -f ./docker-compose/docker-compose.yml build
 
 tag-images: ## Tag docker images with git hash and branch name
