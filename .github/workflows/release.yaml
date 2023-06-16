@@ -4,6 +4,9 @@ name: Prepare new version
 on:
   workflow_dispatch:
 
+permissions:
+  pull-requests: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -22,6 +25,11 @@ jobs:
           # make release-all
           echo "changes" >> changes
 
+      - name: Import GPG secret key
+        run: |
+          mkdir -p ~/.gnupg/
+          echo "${{ secrets.GPG }}" | base64 --decode > ~/.gnupg/private.key
+          gpg --batch --import ~/.gnupg/private.key
 
       - name: "Commit the new changes"
         run: |
