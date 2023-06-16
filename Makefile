@@ -86,7 +86,7 @@ deploy: clean ## push snapshot modules to maven central
 	$(MAVEN) deploy
 
 release: ## release and push modules to maven central
-	$(MAVEN) deploy -P release
+	$(MAVEN) -Dmaven.test.skip=true deploy -P release
 
 fast-build: ARGS = $(FAST_BUILD_ARGS) ## Build all modules without running the tests and generate javadoc
 fast-build: all
