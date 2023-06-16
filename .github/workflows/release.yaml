@@ -21,6 +21,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2/
+          echo "<settings><servers><server><id>ossrh</id><username>${{ secrets.MAVEN_USER }}</username><password>${{ secrets.MAVEN_PASSWORD }}</password></server></servers></settings>" > ~/.m2/settings.xml
+
+
       - name: Import GPG secret key
         run: |
           mkdir -p ~/.gnupg/
