@@ -5,17 +5,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  my-job:
+  release:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Check content
-        run: |
-          ls -l .
-          git log -1
 
       - uses: actions/setup-java@v3
         with:
@@ -24,12 +19,14 @@ jobs:
 
       - name: "Do the release"
         run: |
-          make release-all
+          # make release-all
+          echo "changes" >> changes
 
-      - name: Checkout to a new branch
+
+      - name: "Commit the new changes"
         run: |
-          git config user.name 'Project flotta bot'
-          git config user.email 'project-flotta@redhat.com'
+          git config user.name 'Parodos bot'
+          git config user.email 'parodos@redhat.com'
           export KEY=$(date +%y%m%d)
           git add .
           git commit -m "NON-issue: bump version on $KEY"
