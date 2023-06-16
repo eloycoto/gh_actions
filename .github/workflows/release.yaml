@@ -25,3 +25,17 @@ jobs:
       - name: "Do the release"
         run: |
           make release-all
+
+      - name: Checkout to a new branch
+        run: |
+          git config user.name 'Project flotta bot'
+          git config user.email 'project-flotta@redhat.com'
+          export KEY=$(date +%y%m%d)
+          git add .
+          git commit -m "NON-issue: bump version on $KEY"
+
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: "NON-issue: bump version"
