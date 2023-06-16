@@ -36,7 +36,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: "quay.io"
-          username: "parodos-dev+githubpush"
+          username: "parodos-dev+test"
           password: "${{ secrets.QUAY_GITHUB_TOKEN }}"
 
       - name: Import GPG secret key
