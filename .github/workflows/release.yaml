@@ -32,6 +32,13 @@ jobs:
           echo "<settings><servers><server><id>ossrh</id><username>${{ secrets.MAVEN_USER }}</username><password>${{ secrets.MAVEN_PASSWORD }}</password></server></servers></settings>" > ~/.m2/settings.xml
 
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          registry: "quay.io"
+          username: "parodos-dev+githubpush"
+          password: "${{ secrets.QUAY_GITHUB_TOKEN }}"
+
       - name: Import GPG secret key
         run: |
           mkdir -p ~/.gnupg/
