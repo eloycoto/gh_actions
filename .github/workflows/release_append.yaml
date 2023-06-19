@@ -2,7 +2,9 @@ name: Push manifest to release
 on:
   release:
     types: ["created"]
+
 permissions: write-all
+
 jobs:
   build:
     name: Publish binaries
@@ -12,12 +14,15 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build
-      run: echo "hello world" >> release.md
+      run: |
+        mkdir foo/
+        echo "hello world" >> foo/release.md
+        echo "hello world" >> foo/boo.md
 
     - name: Upload manifest to release
       uses: svenstaro/upload-release-action@v2
       with:
-        file: release.md
-        asset_name: release
+        file: foo
+        asset_name: release.zip
         tag: ${{ github.ref }}
         overwrite: true
