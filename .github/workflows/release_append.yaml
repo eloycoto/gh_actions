@@ -2,7 +2,7 @@ name: Push manifest to release
 on:
   release:
     types: ["created"]
-
+permissions: write-all
 jobs:
   build:
     name: Publish binaries
