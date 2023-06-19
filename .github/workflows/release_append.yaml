@@ -3,7 +3,9 @@ on:
   release:
     types: ["created"]
 
-permissions: write-all
+permissions:
+  contents: write
+
 
 jobs:
   build:
@@ -22,7 +24,7 @@ jobs:
     - name: Upload manifest to release
       uses: svenstaro/upload-release-action@v2
       with:
-        file: foo
-        asset_name: release.zip
+        file: foo/release.md
+        asset_name: release.md
         tag: ${{ github.ref }}
         overwrite: true
