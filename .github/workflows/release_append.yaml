@@ -17,7 +17,7 @@ jobs:
 
     - name: kubeclt
       run: |
-        apt-get install kubectl -y
+        sudo apt-get install kubectl -y
         kubectl kustomize hack/manifests/base
 
     - name: Build
