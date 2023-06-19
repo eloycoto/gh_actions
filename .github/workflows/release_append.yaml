@@ -15,18 +15,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: kubeclt
-      run: |
-        sudo apt-get install kubectl -y
-        kubectl kustomize hack/manifests/base
+    - name: Setup kubectl
+      uses: azure/setup-kubectl@v1
+      with:
+        version: 'v1.27.0'
 
     - name: Build
       run: |
         mkdir foo/
         echo "hello world" >> foo/release.md
         echo "hello world" >> foo/boo.md
-
-
+        kubectl kustomize hack/manifests/base
 
     - name: Upload manifest to release
       uses: svenstaro/upload-release-action@v2
