@@ -1,0 +1,20 @@
+name: Push manifest to release
+
+on:
+  push:
+    tags:
+      - '*'
+on:
+  release:
+    types: ["created"]
+
+jobs:
+  build:
+    name: Publish binaries
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build
+      run: ls -lah
