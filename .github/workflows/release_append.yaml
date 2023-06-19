@@ -1,9 +1,4 @@
 name: Push manifest to release
-
-on:
-  push:
-    tags:
-      - '*'
 on:
   release:
     types: ["created"]
