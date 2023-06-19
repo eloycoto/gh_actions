@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build
-      run: ech "hello world" >> release.md
+      run: echo "hello world" >> release.md
 
     - name: Upload manifest to release
       uses: svenstaro/upload-release-action@v2
